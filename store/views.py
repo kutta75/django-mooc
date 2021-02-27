@@ -42,15 +42,6 @@ def search(request):
         albums= Album.objects.filter(title__icontains=query)
     if not albums.exists(): 
         albums= Album.objects.filter(artists__name__icontains = query )
-    if not albums.exists():
-        message="nous n'avons trouvé aucun résultat"
-    else:
-        albums=["< {}</li>".format(album.title) for album in albums ]
-        message = """
-                nous avons trouvé les albums correspondant à votre requete: les voici : <ul>
-                {}
-                </ul>
-                """.format("</li><li>".join(albums))
     title="Résultat pour la recherche %s" %query
     context = {
             'albums' : albums,

@@ -4,6 +4,12 @@ je viens depuis le fichier list.html
 <h2 class="intro-text text-center"> {{ list_title}}
 </h2>
 </div>
+{% if albums|length_is:"0" %}
+	<div class="text-center" >
+		Aucun album trouvé 
+	</div>
+	{% else %}
+
 	{% for album in albums %}
 	<div class="col-sm-4 text-center">
 		<a href="{% url 'store:detail' album_id=album.id %}">
@@ -16,3 +22,4 @@ je viens depuis le fichier list.html
 	</div> 
 	{% if forloop.counter|divisibleby:3 %} <div> {% endif %}
 	{% endfor %}
+{% endif %}
